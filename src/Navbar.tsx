@@ -8,7 +8,7 @@ const Navbar = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
           <div className="flex-shrink-0 text-black font-bold text-xl tracking-wide">
-            MyPortfolio
+            Riket Patel
           </div>
           <div className="hidden md:flex space-x-8">
             <a href="#about" className="text-black hover:text-blue-600 transition-colors duration-200 font-medium">About</a>
