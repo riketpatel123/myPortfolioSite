@@ -1,5 +1,5 @@
-import { useRef, useState } from 'react';
-import type { FormEvent } from 'react';
+import { useRef, useState, FormEvent } from 'react';
+
 import emailjs from 'emailjs-com';
 interface SkillCardProps {
   name: string;
@@ -9,12 +9,46 @@ interface SkillCardProps {
 // SkillCard component for skill cards
 const SkillCard = ({ name, logo }: SkillCardProps) => {
   return (
-    <div className="flex flex-col items-center bg-gray-50 rounded-lg shadow p-4">
-      <img src={logo} alt={name} className="w-6 h-6 mb-2" />
+    <div className="flex flex-col items-center bg-gray-50 rounded-lg shadow p-4 transition-transform duration-300 hover:scale-110">
+      <img src={logo} alt={name} className="w-8 h-8 mb-2" />
       <span className="text-sm font-medium text-blue-700 text-center">{name}</span>
     </div>
   );
 };
+
+const skills: SkillCardProps[] = [
+  { name: "C#", logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/csharp/csharp-original.svg" },
+  { name: "JavaScript", logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" },
+  { name: "TypeScript", logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/typescript/typescript-original.svg" },
+  { name: "Python", logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" },
+  { name: "Java", logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/java/java-original.svg" },
+  { name: "Ruby", logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/ruby/ruby-original.svg" },
+  { name: "HTML5", logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg" },
+  { name: "CSS3/SCSS", logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg" },
+  { name: "PHP", logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/php/php-original.svg" },
+  { name: "GraphQL", logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/graphql/graphql-plain.svg" },
+  { name: "React", logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg" },
+  { name: "Asp .Net Core", logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/dot-net/dot-net-original.svg" },
+  { name: "Node.js", logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg" },
+  { name: "Angular", logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/angularjs/angularjs-original.svg" },
+  { name: "Vue.js", logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vuejs/vuejs-original.svg" },
+  { name: "Drupal", logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/drupal/drupal-original.svg" },
+  { name: "Flask", logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/flask/flask-original.svg" },
+  { name: "Django", logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/django/django-plain.svg" },
+  { name: "Ruby on Rails", logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/rails/rails-original-wordmark.svg" },
+  { name: "NextJS", logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nextjs/nextjs-original.svg" },
+  { name: "MySQL", logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg" },
+  { name: "MongoDB", logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mongodb/mongodb-original.svg" },
+  { name: "PostgreSQL", logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-original.svg" },
+  { name: "AZURE", logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/azure/azure-original.svg" },
+  { name: "AWS", logo: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/amazonwebservices/amazonwebservices-original-wordmark.svg" },
+  { name: "Docker", logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg" },
+  { name: "Cypress", logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/cypressio/cypressio-original.svg" },
+  { name: "Jest", logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/jest/jest-plain.svg" },
+  { name: "RabbitMQ", logo: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/rabbitmq/rabbitmq-original.svg" },
+  { name: "Git", logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg" },
+];
+
 interface ProjectCardProps {
   title: string;
   description: string;
@@ -113,6 +147,98 @@ const ContactForm = () => {
   );
 };
 
+interface ExperienceItemProps {
+  role: string;
+  company: string;
+  period: string;
+  location: string;
+  description: string[];
+}
+
+const experiences: ExperienceItemProps[] = [
+  {
+    role: "Senior Software Developer",
+    company: "Meridian Credit Union",
+    period: "Feb 2020 - Current",
+    location: "Toronto, ON",
+    description: [
+      "Developed scalable mobile banking apps for Android & iOS using React Native and .NET Core.",
+      "Mentored 3+ junior developers, improving team efficiency.",
+      "Developed a retail lending web app with React and .NET Core, boosting customer engagement by 50%.",
+      "Designed microservices-based REST APIs with RabbitMQ, reducing system downtime by 25%.",
+    ],
+  },
+  {
+    role: "Software Programmer",
+    company: "Ministry of the Solicitor General",
+    period: "May 2019 - Aug 2019",
+    location: "Hamilton, ON",
+    description: [
+      "Reduced data loss by 50% by developing C# REST APIs for audio sync with Azure cloud storage.",
+    ],
+  },
+  {
+    role: "Junior Software Developer",
+    company: "Health Hub Solutions",
+    period: "Jan 2018 - Dec 2018",
+    location: "Mississauga, ON",
+    description: [
+      "Developed a patient entertainment application using React and NodeJS, used by multiple patients in hospitals.",
+    ],
+  },
+];
+
+const ExperienceItem = ({ role, company, period, location, description }: ExperienceItemProps) => (
+  <div className="relative pl-8 sm:pl-12 py-4 group">
+    {/* Timeline Dot */}
+    <div className="flex items-center absolute top-5 left-0">
+      <div className="w-4 h-4 bg-white border-2 border-blue-600 rounded-full z-10 group-hover:bg-blue-600 transition-colors"></div>
+      <div className="w-8 sm:w-12 h-px bg-gray-300"></div>
+    </div>
+    {/* Timeline Card */}
+    <div className="bg-white rounded-xl shadow-lg p-6 transform transition-transform duration-300 hover:scale-105">
+      <div className="flex justify-between items-start mb-2">
+        <div>
+          <h4 className="font-bold text-blue-600 text-lg">{role}</h4>
+          <p className="text-gray-700 font-semibold">{company}</p>
+        </div>
+        <div className="text-right text-sm text-gray-500">
+          <p>{period}</p>
+          <p>{location}</p>
+        </div>
+      </div>
+      <ul className="list-disc list-inside text-gray-600 text-base space-y-1">
+        {description.map((item, index) => (
+          <li key={index}>{item}</li>
+        ))}
+      </ul>
+    </div>
+  </div>
+);
+
+const ExperienceTimeline = () => (
+  <div className="relative">
+    {/* Vertical Line */}
+    <div className="absolute left-[7px] h-full w-0.5 bg-gray-300"></div>
+    {/* Timeline Items */}
+    <div>
+      {experiences.map((exp, index) => (
+        <ExperienceItem key={index} {...exp} />
+      ))}
+    </div>
+  </div>
+);
+
+const SkillsGrid = () => (
+  <div className="bg-white rounded-xl shadow-lg p-8">
+    <div className="grid grid-cols-2 sm:grid-cols-4 md:grid-cols-6 gap-6">
+      {skills.map((skill) => (
+        <SkillCard key={skill.name} {...skill} />
+      ))}
+    </div>
+  </div>
+);
+
 const sections = [
   {
     id: "about",
@@ -128,85 +254,12 @@ const sections = [
   {
     id: "experience",
     title: "Experience",
-    content: (
-      <div className="bg-white rounded-xl shadow-lg p-8">
-        <div className="mb-6">
-          <h4 className="font-bold text-blue-600">Senior Software Developer <span className="text-gray-500">(Feb 2020 - Current)</span></h4>
-          <p className="text-gray-600 mb-1">Meridian Credit Union, Toronto, ON</p>
-          <ul className="list-disc list-inside text-gray-700 text-base mb-2">
-            <li>Developed scalable and maintainable banking mobile applications for Android and iOS using React Native and Asp .Net Core that support millions of users.</li>
-            <li>Mentored and trained 3+ junior developer, improving team efficiency and ensuring adherence to best practices.</li>
-            <li>Collaborated with product and QA teams to deliver high-quality features on schedule.</li>
-            <li>Monitored deployment pipelines, overseeing the smooth and efficient delivery of software updates and releases.</li>
-            <li>Created technical documentation, system diagrams, and API documentation that support developers.</li>
-            <li>Developed a user-friendly web application for retail lending products using React and Asp .Net Core, improving customer engagement by 50% and facilitating $10K+ in new financial system.</li>
-            <li>Designed microservices-based REST APIs, reducing system downtime by 25% with RabbitMQ integration.</li>
-            <li>Enhanced code quality by implementing robust Jest unit tests and Cypress end-to-end testing, reducing post-deployment defects by 30%.</li>
-            <li>Developed a React Native mobile banking app, resulting in a 4.6/5 app store rating.</li>
-          </ul>
-        </div>
-        <div className="mb-6">
-          <h4 className="font-bold text-blue-600">Software Programmer <span className="text-gray-500">(May 2019 - Aug 2019)</span></h4>
-          <p className="text-gray-600 mb-1">Ministry of the Solicitor General, Hamilton, ON</p>
-          <ul className="list-disc list-inside text-gray-700 text-base mb-2">
-            <li>Reduced data loss by 50% by developing C# REST APIs for audio sync with Azure cloud storage.</li>
-          </ul>
-        </div>
-        <div>
-          <h4 className="font-bold text-blue-600">Junior Software Developer <span className="text-gray-500">(Jan 2018 - Dec 2018)</span></h4>
-          <p className="text-gray-600 mb-1">Health Hub Solutions, Mississauga, ON</p>
-          <ul className="list-disc list-inside text-gray-700 text-base mb-2">
-            <li>Developed patient’s entertainment application using React and NodeJS, used by multiple patients in hospitals.</li>
-          </ul>
-        </div>
-      </div>
-    )
+    content: <ExperienceTimeline />
   },
   {
     id: "skills",
     title: "Skills",
-    content: (
-      <div className="bg-white rounded-xl shadow-lg p-8">
-        <div className="grid grid-cols-2 sm:grid-cols-4 md:grid-cols-6 gap-4">
-          {/* Languages */}
-          <SkillCard name="C#" logo="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/csharp/csharp-original.svg" />
-          <SkillCard name="JavaScript" logo="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" />
-          <SkillCard name="TypeScript" logo="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/typescript/typescript-original.svg" />
-          <SkillCard name="Python" logo="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" />
-          <SkillCard name="Java" logo="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/java/java-original.svg" />
-          <SkillCard name="Ruby" logo="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/ruby/ruby-original.svg" />
-          <SkillCard name="HTML5" logo="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg" />
-          <SkillCard name="CSS3/SCSS" logo="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg" />
-          <SkillCard name="PHP" logo="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/php/php-original.svg" />
-          <SkillCard name="GraphQL" logo="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/graphql/graphql-plain.svg" />
-          {/* Frameworks */}
-          <SkillCard name="React" logo="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg" />
-          <SkillCard name="Asp .Net Core" logo="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/dot-net/dot-net-original.svg" />
-          <SkillCard name="Node.js" logo="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg" />
-          <SkillCard name="Angular" logo="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/angularjs/angularjs-original.svg" />
-          <SkillCard name="Vue.js" logo="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vuejs/vuejs-original.svg" />
-          <SkillCard name="Drupal" logo="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/drupal/drupal-original.svg" />
-          <SkillCard name="Flask" logo="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/flask/flask-original.svg" />
-          <SkillCard name="Django" logo="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/django/django-plain.svg" />
-          <SkillCard name="Ruby on Rails" logo="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/rails/rails-original-wordmark.svg" />
-          <SkillCard name="NextJS" logo="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nextjs/nextjs-original.svg" />
-          {/* Database / Cloud */}
-          <SkillCard name="MySQL" logo="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg" />
-          <SkillCard name="MongoDB" logo="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mongodb/mongodb-original.svg" />
-          <SkillCard name="PostgreSQL" logo="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-original.svg" />
-          <SkillCard name="AZURE" logo="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/azure/azure-original.svg" />
-          <SkillCard name="AWS" logo="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/amazonwebservices/amazonwebservices-original-wordmark.svg" />
-          <SkillCard name="Docker" logo="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg" />
-          {/* Testing */}
-          <SkillCard name="Cypress" logo="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/cypressio/cypressio-original.svg" />
-          <SkillCard name="Jest" logo="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/jest/jest-plain.svg" />
-          <SkillCard name="NUnit" logo="src/assets/Nunit.png" />
-          {/* Tools */}
-          <SkillCard name="RabbitMQ" logo="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/rabbitmq/rabbitmq-original.svg" />
-          <SkillCard name="Git" logo="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg" />
-        </div>
-      </div>
-    )
+    content: <SkillsGrid />
   },
   {
     id: "projects",
