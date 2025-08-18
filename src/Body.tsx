@@ -162,10 +162,13 @@ const experiences: ExperienceItemProps[] = [
     period: "Feb 2020 - Current",
     location: "Toronto, ON",
     description: [
-      "Developed scalable mobile banking apps for Android & iOS using React Native and .NET Core.",
+      "Developed scalable mobile banking apps for Android & iOS using React Native and .NET Core used by millions of users.",
       "Mentored 3+ junior developers, improving team efficiency.",
-      "Developed a retail lending web app with React and .NET Core, boosting customer engagement by 50%.",
+      "Monitored deployment pipelines, overseeing the smooth and efficient delivery of software updates and releases.",
+      "Developed a retail lending web app with React and .NET Core, boosting customer engagement by 50% and facilitating $10K+.",
       "Designed microservices-based REST APIs with RabbitMQ, reducing system downtime by 25%.",
+      "Created technical documentation, system diagrams, and API documentation that support developers.",
+      "Reduced post-deployment defects by 30% by implementing robust unit (Jest) and E2E (Cypress) tests."
     ],
   },
   {
