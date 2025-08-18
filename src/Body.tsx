@@ -1,9 +1,114 @@
+import { useRef, useState } from 'react';
+import type { FormEvent } from 'react';
+import emailjs from 'emailjs-com';
+interface SkillCardProps {
+  name: string;
+  logo: string; 
+}
+
 // SkillCard component for skill cards
-const SkillCard = ({ name, logo }: { name: string; logo: string }) => {
+const SkillCard = ({ name, logo }: SkillCardProps) => {
   return (
     <div className="flex flex-col items-center bg-gray-50 rounded-lg shadow p-4">
-      <img src={logo} alt={name} className="w-10 h-10 mb-2" />
-      <span className="text-base font-medium text-blue-700 text-center">{name}</span>
+      <img src={logo} alt={name} className="w-6 h-6 mb-2" />
+      <span className="text-sm font-medium text-blue-700 text-center">{name}</span>
+    </div>
+  );
+};
+interface ProjectCardProps {
+  title: string;
+  description: string;
+  imageUrl: string;
+  liveUrl?: string;
+  githubUrl?: string;
+}
+
+const ProjectCard = ({ title, description, imageUrl, liveUrl, githubUrl }: ProjectCardProps) => (
+  <div className="bg-white rounded-xl shadow-lg overflow-hidden transform transition-transform duration-300 hover:scale-105 flex flex-col">
+    <img className="w-full h-48 object-cover" src={imageUrl} alt={title} />
+    <div className="p-6 flex flex-1 flex-col">
+      <h3 className="text-xl font-bold text-blue-700 mb-2">{title}</h3>
+      <p className="text-gray-600 text-base mb-4">{description}</p>
+      <div className="flex space-x-4 mt-auto pt-4 border-t border-gray-200">
+        {liveUrl && <a href={liveUrl} target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline font-medium">Live Demo</a>}
+        {githubUrl && <a href={githubUrl} target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline font-medium">GitHub</a>}
+      </div>
+    </div>
+  </div>
+);
+
+const projects: ProjectCardProps[] = [
+  {
+    title: "PhotoVault",
+    description: "Place where you can save your photos and memories. Responsive design built using React and Firebase.",
+    imageUrl: "https://github.com/riketpatel123/photoVault/blob/main/docs/PhotoBooth.png?raw=true",
+    liveUrl: "https://photo-vault-two.vercel.app",
+    githubUrl: "https://github.com/riketpatel123/photoVault",
+  },
+  {
+    title: "Frealthy",
+    description: "An online food ordering website built with Next.js, Sanity, and Stripe to help restaurant businesses establish their online presence.",
+    imageUrl: "https://github.com/riketpatel123/frealthy_food/blob/main/docs/Frealthy.png?raw=true",
+    liveUrl: "https://frealthyfoods.vercel.app",
+    githubUrl: "https://github.com/riketpatel123/frealthy_food",
+  },
+];
+
+const ContactForm = () => {
+  const form = useRef<HTMLFormElement>(null);
+  const [status, setStatus] = useState('');
+
+  const sendEmail = (e: FormEvent) => {
+    e.preventDefault();
+
+    if (!form.current) return;
+
+    // Access environment variables
+    const serviceID = import.meta.env.VITE_EMAILJS_SERVICE_ID;
+    const templateID = import.meta.env.VITE_EMAILJS_TEMPLATE_ID;
+    const publicKey = import.meta.env.VITE_EMAILJS_PUBLIC_KEY;
+
+    if (!serviceID || !templateID || !publicKey) {
+      const errorMsg = 'EmailJS credentials are not configured in the .env file.';
+      setStatus(errorMsg);
+      console.error(errorMsg);
+      return;
+    }
+
+    setStatus('Sending...');
+
+    emailjs.sendForm(serviceID, templateID, form.current, publicKey)
+      .then(() => {
+        setStatus('Message sent successfully!');
+        form.current?.reset();
+        setTimeout(() => setStatus(''), 5000); // Clear status after 5 seconds
+      }, (error) => {
+        console.log(error.text);
+        setStatus('Failed to send message. Please try again.');
+        setTimeout(() => setStatus(''), 5000);
+      });
+  };
+
+  return (
+    <div className="bg-white rounded-xl shadow-lg p-8 max-w-xl mx-auto">
+      <form ref={form} onSubmit={sendEmail} className="space-y-6">
+        <div>
+          <label htmlFor="fullname" className="block text-gray-700 font-medium mb-1">Full Name</label>
+          <input type="text" id="fullname" name="fullname" className="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500" required />
+        </div>
+        <div>
+          <label htmlFor="email" className="block text-gray-700 font-medium mb-1">Email</label>
+          <input type="email" id="email" name="email" className="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500" required />
+        </div>
+        <div>
+          <label htmlFor="message" className="block text-gray-700 font-medium mb-1">Message</label>
+          <textarea id="message" name="message" rows={5} className="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500" required />
+        </div>
+        <div className="flex items-center space-x-4">
+          <button type="submit" className="bg-blue-600 text-white font-semibold px-6 py-2 rounded-lg shadow hover:bg-blue-700 transition">Send Message</button>
+          {status && <p className="text-sm text-gray-600">{status}</p>}
+        </div>
+      </form>
     </div>
   );
 };
@@ -62,7 +167,7 @@ const sections = [
     title: "Skills",
     content: (
       <div className="bg-white rounded-xl shadow-lg p-8">
-        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4">
+        <div className="grid grid-cols-2 sm:grid-cols-4 md:grid-cols-6 gap-4">
           {/* Languages */}
           <SkillCard name="C#" logo="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/csharp/csharp-original.svg" />
           <SkillCard name="JavaScript" logo="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" />
@@ -106,29 +211,19 @@ const sections = [
   {
     id: "projects",
     title: "Projects",
-    content: "This is the Projects section. Showcase your projects here."
+    content: (
+      <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+        {projects.map((project) => (
+          <ProjectCard key={project.title} {...project} />
+        ))}
+      </div>
+    )
   },
   {
     id: "contact",
     title: "Contact",
     content: (
-      <div className="bg-white rounded-xl shadow-lg p-8 max-w-xl mx-auto">
-        <form className="space-y-6">
-          <div>
-            <label htmlFor="fullname" className="block text-gray-700 font-medium mb-1">Full Name</label>
-            <input type="text" id="fullname" name="fullname" className="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500" required />
-          </div>
-          <div>
-            <label htmlFor="email" className="block text-gray-700 font-medium mb-1">Email</label>
-            <input type="email" id="email" name="email" className="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500" required />
-          </div>
-          <div>
-            <label htmlFor="message" className="block text-gray-700 font-medium mb-1">Message</label>
-            <textarea id="message" name="message" rows={5} className="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500" required />
-          </div>
-          <button type="submit" className="bg-blue-600 text-white font-semibold px-6 py-2 rounded-lg shadow hover:bg-blue-700 transition">Send Message</button>
-        </form>
-      </div>
+      <ContactForm />
     )
   }
 ];
@@ -136,12 +231,17 @@ const sections = [
 const Body = () => {
   return (
     <div>
-      <main className="pt-20 px-4 max-w-6xl mx-auto space-y-24">
+      <main className="pt-20 px-4 max-w-6xl mx-auto space-y-16">
         {/* Hero Section */}
-        <section className="flex flex-col md:flex-row items-center justify-between bg-white rounded-xl shadow-lg p-8 mb-12">
+        <section className="flex flex-col md:flex-row items-center justify-between bg-white rounded-xl shadow-lg p-8 mb-12 min-h-80">
           <div className="flex-1 text-left">
             <h1 className="text-4xl font-bold text-blue-700 mb-4">Hello, I'm Riket.</h1>
-            <h2 className="text-2xl text-gray-700 mb-2">I'm a Senior Software Developer</h2>
+            <h2 className="text-2xl text-gray-700 mb-6">I'm a Senior Software Developer</h2>
+            {/* <div className="flex items-center space-x-4">
+              <a href="/Riket-Patel-Resume.pdf" download="Riket-Patel-Resume.pdf" className="bg-blue-600 text-white font-semibold px-6 py-2 rounded-lg shadow hover:bg-blue-700 transition">
+                Download Resume
+              </a>
+            </div> */}
           </div>
           <div className="flex-1 flex justify-center md:justify-end">
             <img
@@ -154,7 +254,7 @@ const Body = () => {
         {/* Existing sections */}
         {sections.map((section) => (
           <section id={section.id} key={section.id} className="scroll-mt-24">
-            <h2 className="text-3xl font-bold mb-4 text-blue-700">{section.title}</h2>
+            <h2 className="inline-block border-b-[3px] border-amber-400 pb-2 text-3xl font-bold text-blue-700 mb-4">{section.title}</h2>
             {typeof section.content === "string" ? (
               <p className="text-lg text-gray-700">{section.content}</p>
             ) : (
