@@ -291,13 +291,18 @@ const Body = () => {
         {/* Hero Section */}
         <section className="flex flex-col md:flex-row items-center justify-between bg-white rounded-xl shadow-lg p-8 mb-12 min-h-80">
           <div className="flex-1 text-left">
-            <h1 className="text-4xl font-bold text-blue-700 mb-4">Hello, I'm Riket.</h1>
+            <h1 className="animate-gradient bg-[linear-gradient(111.6deg,rgba(114,167,232,1)_9.4%,rgba(253,129,82,1)_43.9%,rgba(253,129,82,1)_54.8%,rgba(249,202,86,1)_86.3%)] bg-clip-text text-4xl font-bold text-transparent mb-4">
+              Hello, I'm Riket.
+            </h1>
             <h2 className="text-2xl text-gray-700 mb-6">I'm a Senior Software Developer</h2>
             {/* <div className="flex items-center space-x-4">
               <a href="/Riket-Patel-Resume.pdf" download="Riket-Patel-Resume.pdf" className="bg-blue-600 text-white font-semibold px-6 py-2 rounded-lg shadow hover:bg-blue-700 transition">
                 Download Resume
               </a>
             </div> */}
+            <div className="mt-4">
+              <a href="#projects" className="text-blue-600 hover:underline font-medium">View My Projects</a>
+            </div>
           </div>
           <div className="flex-1 flex justify-center md:justify-end">
             <img
