@@ -1,4 +1,4 @@
-import { useRef, useState, FormEvent } from 'react';
+import { useRef, useState, type FormEvent } from 'react';
 
 import emailjs from 'emailjs-com';
 interface SkillCardProps {
