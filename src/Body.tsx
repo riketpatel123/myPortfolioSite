@@ -157,7 +157,7 @@ const ProjectCard = ({
   githubUrl,
 }: ProjectCardProps) => (
   <div className="bg-white rounded-xl shadow-lg overflow-hidden transform transition-transform duration-300 hover:scale-105 flex flex-col">
-    <img className="w-full h-48 object-cover" src={imageUrl} alt={title} />
+    <img className="w-full h-48 object-contain" src={imageUrl} alt={title} />
     <div className="p-6 flex flex-1 flex-col">
       <h3 className="text-xl font-bold text-blue-700 mb-2">{title}</h3>
       <p className="text-gray-600 text-base mb-4">{description}</p>
@@ -256,7 +256,7 @@ const ContactForm = () => {
   };
 
   return (
-    <div className="bg-white rounded-xl shadow-lg p-8 max-w-xl mx-auto">
+    <div className="bg-white rounded-xl shadow-lg p-8 mx-auto">
       <form ref={form} onSubmit={sendEmail} className="space-y-6">
         <div>
           <label
@@ -477,13 +477,13 @@ const Body = () => {
           <div className="flex flex-col w-full md:hidden">
             <div className="flex justify-center mb-6">
               <img
-                src="/vite.svg"
+                src="/profile.png"
                 alt="Riket Patel"
                 className="w-40 h-40 rounded-full object-cover border-4 border-blue-500 shadow-md"
               />
             </div>
             <div className="text-left">
-              <h1 className="animate-gradient bg-[linear-gradient(111.6deg,rgba(114,167,232,1)_9.4%,rgba(253,129,82,1)_43.9%,rgba(253,129,82,1)_54.8%,rgba(249,202,86,1)_86.3%)] bg-clip-text text-4xl font-bold text-transparent mb-4">
+              <h1 className="animate-gradient bg-[linear-gradient(112deg,#72a7e8_9%,#fd8152_44%,#fd8152_55%,#f9ca56_86%)] bg-clip-text text-4xl font-bold text-transparent mb-4">
                 Hello, I'm Riket.
               </h1>
               <h2 className="text-2xl text-gray-700 mb-6">
@@ -492,7 +492,7 @@ const Body = () => {
               <div className="mt-4">
                 <button
                   onClick={scrollToProjects}
-                  className="bg-blue-600 text-white font-semibold px-6 py-2 rounded-lg shadow hover:bg-blue-700 transition"
+                  className="animate-gradient bg-[linear-gradient(to_right,#1565C0,#b92b27)] text-white font-semibold px-6 py-2 rounded-lg shadow hover:brightness-110 transition"
                 >
                   View My Projects
                 </button>
@@ -511,7 +511,7 @@ const Body = () => {
               <div className="mt-4">
                 <button
                   onClick={scrollToProjects}
-                  className="bg-blue-600 text-white font-semibold px-6 py-2 rounded-lg shadow hover:bg-blue-700 transition"
+                  className="animate-gradient bg-[linear-gradient(to_right,#1565C0,#b92b27)] text-white font-semibold px-6 py-2 rounded-lg shadow hover:brightness-110 transition"
                 >
                   View My Projects
                 </button>
@@ -519,9 +519,9 @@ const Body = () => {
             </div>
             <div className="flex-1 flex justify-end">
               <img
-                src="/vite.svg"
+                src="/profile.png"
                 alt="Riket Patel"
-                className="w-40 h-40 rounded-full object-cover border-4 border-blue-500 shadow-md"
+                className="w-50 h-50 rounded-full object-cover border-4 border-blue-500 shadow-md"
               />
             </div>
           </div>
